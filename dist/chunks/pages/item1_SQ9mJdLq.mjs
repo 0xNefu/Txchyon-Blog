@@ -2,7 +2,7 @@ import { e as createAstro, f as createComponent, r as renderTemplate, m as maybe
 import 'kleur/colors';
 import 'clsx';
 import { optimize } from 'svgo';
-import { c as create_ssr_component, e as escape, S as SITE, $ as $$BaseHead, a as $$Prose, b as $$MainLayout } from './about_6_qXNLeE.mjs';
+import { c as create_ssr_component, e as escape, S as SITE, $ as $$BaseHead, a as $$Prose, b as $$MainLayout } from './about__18L1FwK.mjs';
 /* empty css                           */
 
 const SPRITESHEET_NAMESPACE = `astroicon`;

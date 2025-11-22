@@ -1,7 +1,7 @@
 import { f as createComponent, r as renderTemplate, h as renderComponent, u as unescapeHTML } from '../astro_6sNcPkev.mjs';
 import 'kleur/colors';
 import 'clsx';
-import { $ as $$Post } from './item1_hAbOdV0_.mjs';
+import { $ as $$Post } from './item1_SQ9mJdLq.mjs';
 
 const html = "<p>П﻿роба пера</p>\n<p><img src=\"/images/uploads/190092ee-dc26-42fc-8ad6-9344e3b9a1b8.jpeg\" alt=\"\"></p>";
 
