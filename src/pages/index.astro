@@ -4,7 +4,7 @@ export const prerender = true;
 import { getCollection } from 'astro:content';
 import DefaultPageLayout from '$/layouts/default.astro';
 import PostPreviewList from '$/components/PostPreviewList.astro';
-import AsterPrice from '../components/AsterPrice.astro';
+// import AsterPrice from '../components/AsterPrice.astro'   ← commented out so build works
 
 const title = 'Txchyon Capital';
 const description = 'Multi-strategy Investment Fund • Aster perpetuals • Real yields';
@@ -25,8 +25,13 @@ const posts = allPosts
       Multi-strategy trading firm • Aster perpetuals • Real yields
     </p>
 
-    <!-- LIVE PRICE -->
-    <AsterPrice client:load />
+    <!-- LIVE PRICE – temporarily static until we fix the component later -->
+    <div class="rounded-2xl bg-gray-900/90 px-10 py-5 backdrop-blur border border-[#00F2FF]/30 shadow-2xl shadow-[#00F2FF]/20">
+      <span class="text-5xl md:text-6xl font-mono font-bold text-[#00F2FF] tracking-tight">
+        $ASTER ≈ <span>$1.29</span>
+        <span class="text-sm ml-2 text-green-400">(offline)</span>
+      </span>
+    </div>
 
     <p class="mt-20 text-lg text-gray-500">
       Blog coming soon — stacking $ASTER in the meantime.
