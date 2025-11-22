@@ -1,0 +1,9 @@
+async function getMod() {
+						return import('./aster-28-percent-yield_hT6ibygg.mjs');
+					}
+					const collectedLinks = "@@ASTRO-LINKS@@";
+					const collectedStyles = "@@ASTRO-STYLES@@";
+					const collectedScripts = "@@ASTRO-SCRIPTS@@";
+					const defaultMod = { __astroPropagation: true, getMod, collectedLinks, collectedStyles, collectedScripts };
+
+export { defaultMod as default };
