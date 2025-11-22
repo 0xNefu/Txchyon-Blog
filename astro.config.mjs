@@ -1,56 +1,43 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { defineConfig } from "astro/config";
 import svelte from '@astrojs/svelte';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel/serverless";
 import markdoc from "@astrojs/markdoc";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-import remarkCodeTitles from 'remark-code-titles'
 import decapCmsOauth from "astro-decap-cms-oauth";
+import remarkCodeTitles from 'remark-code-titles';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Full Astro Configuration API Documentation:
-// https://docs.astro.build/reference/configuration-reference
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// https://astro.build/config
-export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
-  output: 'server',
-  site: 'https://astro-ink.vercel.app', // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
-  server: {
-    // port: 4321, // The port to run the dev server on.
-  },
-  markdown: {
-    syntaxHighlight: 'shiki',
-    shikiConfig: {
-      theme: 'css-variables',
-    },
-    remarkPlugins: [
-      remarkCodeTitles
-    ]
-  },
+export default defineConfig({
+  output: 'static',                              // ← static for Cloudflare Pages
+  site: 'https://txchyon-blog.pages.dev',        // ← your real URL
+  base: '/',                                     // ← critical
+
   integrations: [
-    mdx(), 
+    mdx(),
     markdoc(),
-    svelte(), 
-    tailwind({
-      applyBaseStyles: false,
-    }), 
+    svelte(),
+    tailwind({ applyBaseStyles: false }),
     sitemap(),
     decapCmsOauth()
   ],
+
+  markdown: {
+    syntaxHighlight: 'shiki',
+    shikiConfig: { theme: 'css-variables' },
+    remarkPlugins: [remarkCodeTitles]
+  },
+
   vite: {
-    plugins: [],
     resolve: {
       alias: {
-        $: path.resolve(__dirname, './src')
+        // ← This line fixes the "$/" imports instantly
+        '$': path.resolve(__dirname, './src')
       }
-    },
-    optimizeDeps: {
-      allowNodeBuiltins: true
     }
-  },
-  adapter: vercel()
+  }
 });
