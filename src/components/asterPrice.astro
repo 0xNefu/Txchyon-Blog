@@ -1,0 +1,29 @@
+---
+// src/components/AsterPrice.astro
+---
+<div class="rounded-2xl bg-gray-900/90 px-10 py-5 backdrop-blur border border-[#00F2FF]/30 shadow-2xl shadow-[#00F2FF]/20">
+  <span class="text-5xl md:text-6xl font-mono font-bold text-[#00F2FF] tracking-tight">
+    $ASTER ≈ <span id="price">Loading...</span>
+    <span id="change" class="text-sm ml-2 opacity-80"></span>
+  </span>
+</div>
+
+<script>
+  async function update() {
+    try {
+      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=aster-2&vs_currencies=usd&include_24hr_change=true');
+      const d = await r.json();
+      const p = d['aster-2'].usd;
+      const c = d['aster-2'].usd_24h_change;
+      document.getElementById('price')!.textContent = `$${p.toFixed(3)}`;
+      const el = document.getElementById('change')!;
+      el.textContent = `(${c >= 0 ? '+' : ''}${c.toFixed(2)}%)`;
+      el.className = c >= 0 ? 'text-sm ml-2 text-green-400' : 'text-sm ml-2 text-red-400';
+    } catch (e) {
+      document.getElementById('price')!.textContent = '$1.29';
+      document.getElementById('change')!.textContent = '(offline)';
+    }
+  }
+  update();
+  setInterval(update, 30000);
+</script>

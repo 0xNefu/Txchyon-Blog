@@ -3,13 +3,17 @@
     import SvgIcon from './SvgIcon.astro'
     import ModeSwitcherBtn from './ModeSwitcherBtn.svelte'
     import SearchBtn from './SearchBtn.svelte'
-
 ---
 
 <header class="header">
     <div class="header__logo">
         <a href="/" class="avatar">
-            <img class="header__logo-img" src="/assets/logo.svg" alt="Astro logo" />
+            <!-- THIS IS YOUR LOGO NOW -->
+            <img 
+                class="header__logo-img" 
+                src="/txchyon-logo.png" 
+                alt="Txchyon" 
+            />
         </a>
     </div>
     <div class="header__meta flex-1">
@@ -52,10 +56,10 @@
 
 <style>
     .header {
-        @apply flex gap-4 border-b py-3 /* border-gray-200 dark:border-gray-700 - check styles/global.css */
+        @apply flex gap-4 border-b py-3
     }
     .header__logo-img {
-        @apply w-16 h-16 rounded-full overflow-hidden
+        @apply w-16 h-16 rounded-full object-contain bg-transparent
     }
     .header__title {
         @apply text-4xl font-extrabold md:text-5xl text-theme-secondary dark:text-theme-dark-secondary

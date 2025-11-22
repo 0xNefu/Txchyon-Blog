@@ -25,26 +25,26 @@ export const NAV_ITEMS: NavItems = {
 
 export const SITE = {
 	// Your site's detail?
-	name: "Ink",
-	title: "Astro - Ink",
-	description: "Crisp, minimal, personal blog theme for Astro",
-	url: "https://astro-ink.vercel.app",
-	githubUrl: "https://github.com/one-aalam/astro-ink",
-	listDrafts: true,
+	name: "Txchyon",
+	title: "Txchyon",
+	description: "Strategic on-chain investment fund | Tachyon speed accumulation",
+	url: "https://txchyon.com",
+	githubUrl: "https://github.com/0xNefu/txchyon-astro-ink",
+	listDrafts: false,                          // set false for production
 	image:
 		"https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png",
 	// YT video channel Id (used in media.astro)
-	ytChannelId: "",
+	ytChannelId: "txchyon",
 	// Optional, user/author settings (example)
 	// Author: name
 	author: "", // Example: Fred K. Schott
 	// Author: Twitter handler
-	authorTwitter: "", // Example: FredKSchott
+	authorTwitter: "@NefuTrades", // Example: FredKSchott
 	// Author: Image external source
 	authorImage: "", // Example: https://pbs.twimg.com/profile_images/1272979356529221632/sxvncugt_400x400.jpg, https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png
 	// Author: Bio
 	authorBio:
-		"Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro",
+		"C",
 };
 
 // Ink - Theme configuration

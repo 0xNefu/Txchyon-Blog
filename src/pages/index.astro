@@ -1,58 +1,48 @@
 ---
 export const prerender = true
 
-import { getCollection, getEntryBySlug } from 'astro:content'
+import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/PostPreviewList.astro'
-import Prose from '$/components/Prose.astro'
-import { Content as AboutAstroInk } from './_astro-ink.md'
+import AsterPrice from '../components/AsterPrice.astro'   // ← THIS FIXES IT
 
+const title = 'Txchyon Capital'
+const description = 'Multi-strategy Investment Fund • Aster perpetuals • Real yields'
 
-const title = 'Home'
-const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
-
-const posts = await getCollection('blog')
+const allPosts = await getCollection('blog')
+const posts = allPosts
+  .filter(post => post.data.pubDate)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
-<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
-    <div class="hero ">
-        <div class="hero__face">
-            <div class="author-card">
-                <img src="https://assets.website-files.com/5e51c674258ffe10d286d30a/5e5358878e2493fbea064dd9_peep-59.svg" title="Aalam" />
-            </div>
-        </div>
-        <div class="hero__says">
-            <Prose>
-                <AboutAstroInk/>
-            </Prose>
-        </div>
-    </div>
-    <hr/>
-    <PostPreviewList posts={posts.slice(0, 3)} heading="recent posts"/>
-    <div class="page__actions">
-        <a class="action__go-to-blog ink-h" href="/blog" title="All Posts">All Posts &rarr;</a>
-    </div>
-</DefaultPageLayout>
 
-<style>
-    .hero {
-        @apply flex flex-col md:flex-row gap-8 w-full transition-all pb-4
-    }
-    .hero__face {
-        @apply flex md:flex-none justify-center
-    }
-    .hero__says {
-        @apply flex-1 text-center md:text-left
-    }
-    .author-card {
-        @apply  h-48 w-48 md:h-56 bg-theme-primary dark:bg-theme-dark-primary rounded-full md:rounded-md shadow-lg
-    }
-    .author-card img {
-        @apply rounded-full h-48 w-48 md:h-56
-    }
-    .page__actions {
-        @apply flex justify-center md:justify-end py-6
-    }
-    .action__go-to-blog {
-        @apply py-4 hover:underline
-    }
-</style>
+<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
+  <!-- ASTER HERO -->
+  <section class="flex min-h-screen flex-col items-center justify-center px-6 py-24 text-center">
+    <h1 class="text-7xl md:text-9xl font-black tracking-tight mb-8 bg-gradient-to-r from-[#00F2FF] via-[#7C3AED] to-[#EC4899] bg-clip-text text-transparent leading-none">
+      Txchyon Capital
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl">
+      Multi-strategy trading firm • Aster perpetuals • Real yields
+    </p>
+
+    <!-- LIVE PRICE -->
+    <AsterPrice client:load />
+
+    <p class="mt-20 text-lg text-gray-500">
+      Blog coming soon — stacking $ASTER in the meantime.
+    </p>
+  </section>
+
+  <!-- LATEST POSTS -->
+  {posts.length > 0 && (
+    <section class="py-24">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 text-cyan-400">Latest Research</h2>
+        <PostPreviewList posts={posts.slice(0, 3)} />
+        <div class="text-center mt-12">
+          <a href="/blog" class="text-xl text-cyan-400 hover:underline">View all posts →</a>
+        </div>
+      </div>
+    </section>
+  )}
+</DefaultPageLayout>
